@@ -1,6 +1,5 @@
 export default async function Page() {
   return (
-    <>
       <div className="bg-white drop-shadow-sm">
         <div className="min-h-[500px] max-w-[1024px] mx-auto flex flex-col-reverse md:flex-row justify-center gap-[16px] md:gap-[48px]">
           <div className="flex flex-col justify-center px-[16px] pb-[32px]">
@@ -10,6 +9,5 @@ export default async function Page() {
           </div>
         </div>
       </div>
-    </>
   );
 }

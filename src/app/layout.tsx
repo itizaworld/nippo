@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import './globals.css';
 import { Providers } from './providers';
 import {  NippoNavbar } from '~/app/_components/layouts/NippoNavbar';
 import { NippoFooter } from '~/app/_components/layouts/NippoFooter';
