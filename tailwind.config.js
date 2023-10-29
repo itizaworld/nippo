@@ -19,6 +19,7 @@ const config = {
       },
     },
   },
+  darkMode: "class",
   plugins: [
     nextui({
       layout: {},

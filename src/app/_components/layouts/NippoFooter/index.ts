@@ -1,0 +1,1 @@
+export { NippoFooter } from './NippoFooter';
