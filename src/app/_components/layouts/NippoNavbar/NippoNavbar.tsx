@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
-import { Navbar , NavbarBrand, NavbarContent } from '@nextui-org/navbar';
+import { Navbar, NavbarBrand, NavbarContent } from '@nextui-org/navbar';
 import { Link } from '@nextui-org/link';
 import { Spinner } from '@nextui-org/spinner';
 
 export const NippoNavbar: FC = () => {
-
   return (
     <>
       <Navbar isBordered isBlurred={false}>
@@ -14,7 +13,7 @@ export const NippoNavbar: FC = () => {
           </Link>
         </NavbarBrand>
         <NavbarContent justify="end">
-            <Spinner />
+          <Spinner />
         </NavbarContent>
       </Navbar>
     </>
