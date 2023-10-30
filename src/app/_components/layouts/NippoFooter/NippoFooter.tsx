@@ -8,7 +8,8 @@ export const NippoFooter = () => {
         <Link href="/" className="text-slate-50 font-bold">
           みんなの日報
         </Link>
-        <p className="mt-[8px] text-slate-50 text-sm">あなたの切り口で記事をまとめよう</p>
+        <p className="mt-[8px] text-slate-50 text-sm">目標達成に向けて一歩を踏み出そう</p>
+        {/* TODO: ページができたら有効にする */}
         {/* <div className="mt-[24px] flex gap-[16px]">
           <Link href="https://www.wiscro.app/terms" className="text-slate-50">
             利用規約
