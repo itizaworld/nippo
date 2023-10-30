@@ -35,8 +35,6 @@ export const authOptions: NextAuthOptions = {
     },
     // セッションの設定
     async session(log) {
-      console.log(35, log);
-
       // if (session?.user) session.user.id = user.id;
       return log.session;
     },
