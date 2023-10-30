@@ -1,3 +1,5 @@
+import { Link } from '@nextui-org/link';
+
 export default async function Page() {
   return (
     <div className="drop-shadow-sm">
@@ -6,6 +8,9 @@ export default async function Page() {
           <h1 className="text-2xl font-bold mb-[8px]">目標達成に向けて一歩を踏み出そう</h1>
           <p className="text-slate-600 mb-[24px]">オンライン日報はURLをまとめたページを気軽に作れるアプリケーションです。</p>
           <p className="text-slate-600">Coming Soon...</p>
+          <Link href="https://twitter.com/same_gum" className="mt-[24px]" target="_blank">
+            開発進捗はXで発信しています
+          </Link>
         </div>
       </div>
     </div>
