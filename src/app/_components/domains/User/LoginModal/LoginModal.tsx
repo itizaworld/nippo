@@ -19,6 +19,7 @@ export const LoginModal: FC<Props> = ({ isOpen, onOpenChange }) => {
       <ModalContent>
         <ModalHeader>ようこそ みんなの日報 へ！</ModalHeader>
         <ModalBody className="pb-[24px] items-center">
+          <p className="mb-[4px]">目標達成のための一歩を踏み出そう！</p>
           <div className="cursor-pointer" onClick={() => signIn('google')}>
             <Image className="mx-auto" src="/images/sign-in-google.png" width={200} />
           </div>

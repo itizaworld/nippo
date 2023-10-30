@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Navbar, NavbarBrand, NavbarContent } from '@nextui-org/navbar';
 import { Link } from '@nextui-org/link';
-import { Spinner } from '@nextui-org/spinner';
+import { LoginButton } from '../../domains/User/LoginButton';
 
 export const NippoNavbar: FC = () => {
   return (
@@ -13,7 +13,7 @@ export const NippoNavbar: FC = () => {
           </Link>
         </NavbarBrand>
         <NavbarContent justify="end">
-          <Spinner />
+          <LoginButton />
         </NavbarContent>
       </Navbar>
     </>
