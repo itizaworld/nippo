@@ -18,7 +18,8 @@
     "next": "13.5.2",
     "next-auth": "^4.24.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "url-join": "^5.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
