@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from '@nextui-org/link';
+import { URLS } from '~/app/_constants/urls';
 
 export const NippoFooter = () => {
   return (
@@ -9,15 +10,14 @@ export const NippoFooter = () => {
           みんなの日報
         </Link>
         <p className="mt-[8px] text-slate-50 text-sm">目標達成に向けて一歩を踏み出そう</p>
-        {/* TODO: ページができたら有効にする */}
-        {/* <div className="mt-[24px] flex gap-[16px]">
-          <Link href="https://www.wiscro.app/terms" className="text-slate-50">
+        <div className="mt-[24px] flex gap-[16px]">
+          <Link href={URLS.TERM} className="text-slate-50">
             利用規約
           </Link>
-          <Link href="https://www.wiscro.app/policy" className="text-slate-50">
+          <Link href={URLS.POLICY} className="text-slate-50">
             プライバシーポリシー
           </Link>
-        </div> */}
+        </div>
       </div>
     </div>
   );
