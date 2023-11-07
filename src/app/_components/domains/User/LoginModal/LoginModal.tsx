@@ -23,8 +23,7 @@ export const LoginModal: FC<Props> = ({ isOpen, onOpenChange }) => {
           <Link href={URLS.LOGIN_TO_BACKEND}>
             <Image className="mx-auto" src="/images/sign-in-google.png" width={200} />
           </Link>
-          {/* TODO: ページが作成されたら有効にする */}
-          {/* <p className="text-slate-600">
+          <p className="text-slate-600">
             ログインする前に、
             <Link href="https://nippo.wiscro.app/terms" className="text-sky-500" target="_blank" rel="noreferrer">
               利用規約
@@ -34,7 +33,7 @@ export const LoginModal: FC<Props> = ({ isOpen, onOpenChange }) => {
               プライバシーポリシー
             </Link>
             に同意してください。
-          </p> */}
+          </p>
         </ModalBody>
       </ModalContent>
     </Modal>
