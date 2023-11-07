@@ -16,7 +16,6 @@ export const NippoNavbar: FC = async () => {
         </Link>
       </NavbarBrand>
       <NavbarContent justify="end">
-        {/* TODO: 型アサーションを修正する */}
         <NavbarItem>{currentUser ? <PersonalDropdown user={currentUser} /> : <LoginButton />}</NavbarItem>
       </NavbarContent>
     </Navbar>
