@@ -897,7 +897,7 @@
     "@react-types/tabs" "^3.3.3"
     scroll-into-view-if-needed "3.0.10"
 
-"@nextui-org/theme@2.1.17":
+"@nextui-org/theme@2.1.17", "@nextui-org/theme@^2.1.9":
   version "2.1.17"
   resolved "https://registry.yarnpkg.com/@nextui-org/theme/-/theme-2.1.17.tgz#e5e625486225fab15a60ae774988c71c4f91b66b"
   integrity sha512-/WeHcMrAcWPGsEVn9M9TnvxKkaYkCocBH9JrDYCEFQoJgleUzHd4nVk7MWtpSOYJXLUzUMY1M9AqAK3jBkw+5g==
@@ -912,30 +912,6 @@
     lodash.mapkeys "^4.6.0"
     lodash.omit "^4.5.0"
     tailwind-variants "^0.1.18"
-
-"@nextui-org/theme@^2.1.9":
-  version "2.1.9"
-  resolved "https://registry.yarnpkg.com/@nextui-org/theme/-/theme-2.1.9.tgz#509da2e47bff35fafc974e675a3210caae7deab7"
-  integrity sha512-DmSv6yWb8zp3dQ4ic5XDWGc1rNjEOPphrfc5E4tzUZqgsLisNjr2Gm3bMzM51Kquepv8OzYojoaB2nO2zmI6mw==
-  dependencies:
-    "@types/color" "^3.0.3"
-    "@types/flat" "^5.0.2"
-    "@types/lodash.foreach" "^4.5.7"
-    "@types/lodash.get" "^4.4.7"
-    "@types/lodash.kebabcase" "^4.1.7"
-    "@types/lodash.mapkeys" "^4.6.7"
-    "@types/lodash.omit" "^4.5.7"
-    color "^4.2.3"
-    color2k "^2.0.2"
-    deepmerge "4.3.1"
-    flat "^5.0.2"
-    lodash.foreach "^4.5.0"
-    lodash.get "^4.4.2"
-    lodash.kebabcase "^4.1.1"
-    lodash.mapkeys "^4.6.0"
-    lodash.omit "^4.5.0"
-    tailwind-variants "^0.1.14"
-    tailwindcss "^3.2.7"
 
 "@nextui-org/tooltip@2.0.29":
   version "2.0.29"
@@ -1954,30 +1930,6 @@
   dependencies:
     tslib "^2.4.0"
 
-"@types/color-convert@*":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@types/color-convert/-/color-convert-2.0.2.tgz#a5fa5da9b866732f8bf86b01964869011e2a2356"
-  integrity sha512-KGRIgCxwcgazts4MXRCikPbIMzBpjfdgEZSy8TRHU/gtg+f9sOfHdtK8unPfxIoBtyd2aTTwINVLSNENlC8U8A==
-  dependencies:
-    "@types/color-name" "*"
-
-"@types/color-name@*":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.2.tgz#bdeeb6fdcb78969033767951ab0cb26c7514a658"
-  integrity sha512-JWO/ZyxTKk0bLuOhAavGjnwLR73rUE7qzACnU7gMeyA/gdrSHm2xJwqNPipw2MtaZUaqQ2UG/q7pP6AQiZ8mqw==
-
-"@types/color@^3.0.3":
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/@types/color/-/color-3.0.5.tgz#658fd9286a44c21dabaa56c2e2f63da3ac15f063"
-  integrity sha512-T9yHCNtd8ap9L/r8KEESu5RDMLkoWXHo7dTureNoI1dbp25NsCN054vOu09iniIjR21MXUL+LU9bkIWrbyg8gg==
-  dependencies:
-    "@types/color-convert" "*"
-
-"@types/flat@^5.0.2":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@types/flat/-/flat-5.0.4.tgz#d8262918655d942cb0b79f09020240d5ff668557"
-  integrity sha512-Qy8SOE+x5F40jebCj4vPoA/Y6J2Zd6h9ihMPYP8U8//dDEOK4Yu0ShOTKqEmWPR+4AdV4sls/VCaR6azEFvKKg==
-
 "@types/json-schema@^7.0.12":
   version "7.0.14"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.14.tgz#74a97a5573980802f32c8e47b663530ab3b6b7d1"
@@ -1987,46 +1939,6 @@
   version "0.0.29"
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==
-
-"@types/lodash.foreach@^4.5.7":
-  version "4.5.8"
-  resolved "https://registry.yarnpkg.com/@types/lodash.foreach/-/lodash.foreach-4.5.8.tgz#c516e6e042c1965016fe0b242448dd03301c2a6b"
-  integrity sha512-nMZmw6YAyNivWbbaY/hTF56YMl5T9+i+auaUhxtbA+ZNEwqwyTo0b7Jn85HNfiqsVQVzbhI0zIaSp7C5EpAPQQ==
-  dependencies:
-    "@types/lodash" "*"
-
-"@types/lodash.get@^4.4.7":
-  version "4.4.8"
-  resolved "https://registry.yarnpkg.com/@types/lodash.get/-/lodash.get-4.4.8.tgz#205004a76a7b821999563342e63ffb1940a9498a"
-  integrity sha512-XK+co6sBkJxh1vaVP8al6cAA17dX//RNCknGG8JhpHFJfxq/GXKAYB9NKheG22pu2xpWpxfFd65W08EhH2IFlg==
-  dependencies:
-    "@types/lodash" "*"
-
-"@types/lodash.kebabcase@^4.1.7":
-  version "4.1.8"
-  resolved "https://registry.yarnpkg.com/@types/lodash.kebabcase/-/lodash.kebabcase-4.1.8.tgz#81cf2a1f81f3ea640a3538da43ec54e13b57dfcc"
-  integrity sha512-ZwdT+S6Ejbl2KEw/nunwO63hMzABqzVdWonRMEuhKs0GfwqffaQ3tSJo+/wmDCCaGUHIiObsBFY59GUYjYMk5A==
-  dependencies:
-    "@types/lodash" "*"
-
-"@types/lodash.mapkeys@^4.6.7":
-  version "4.6.8"
-  resolved "https://registry.yarnpkg.com/@types/lodash.mapkeys/-/lodash.mapkeys-4.6.8.tgz#008fb45e5e7d64e00fae92958b925e2c3dfe5f26"
-  integrity sha512-vA3/4dFOkK9ugEOuqGLEwLeWicwQM03LmboZHuiG0VU0jdFyq5NRdw8XF2cnz5ZdGiGF3Yb8dS9UVoQzirHlfA==
-  dependencies:
-    "@types/lodash" "*"
-
-"@types/lodash.omit@^4.5.7":
-  version "4.5.8"
-  resolved "https://registry.yarnpkg.com/@types/lodash.omit/-/lodash.omit-4.5.8.tgz#b618ff92d2537a88930d0242f6d4a7bd24c12246"
-  integrity sha512-CeIDttD58jS7R7M4rI8ZNBbV6JGG+BkKQFnWjduFJwTxqo8NdT/xjbjmQc39MVB2TKJ0rvQxddNaIna+W/pQvw==
-  dependencies:
-    "@types/lodash" "*"
-
-"@types/lodash@*":
-  version "4.14.200"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.200.tgz#435b6035c7eba9cdf1e039af8212c9e9281e7149"
-  integrity sha512-YI/M/4HRImtNf3pJgbF+W6FrXovqj+T+/HpENLTooK9PnkacBsDpeP3IpHab40CClUfhNmdM2WTNP2sa2dni5Q==
 
 "@types/node@*", "@types/node@^20":
   version "20.8.10"
@@ -4634,7 +4546,7 @@ tailwind-variants@^0.1.14, tailwind-variants@^0.1.18:
   dependencies:
     tailwind-merge "^1.14.0"
 
-tailwindcss@^3.2.7, tailwindcss@^3.3.3:
+tailwindcss@^3.3.3:
   version "3.3.5"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.3.5.tgz#22a59e2fbe0ecb6660809d9cc5f3976b077be3b8"
   integrity sha512-5SEZU4J7pxZgSkv7FP1zY8i2TIAOooNZ1e/OGtxIEv6GltpoiXUqWvLy89+a10qYTB1N5Ifkuw9lqQkN9sscvA==
