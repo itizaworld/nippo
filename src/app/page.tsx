@@ -5,7 +5,7 @@ import { getObjectiveMe } from './_actions/objectiveActions';
 
 export default async function Page() {
   const { currentUser } = await fetchMe();
-  const { objective } = await getObjectiveMe();
+  const objective = currentUser ? (await getObjectiveMe()).objective : undefined;
 
   return (
     <div className="drop-shadow-sm">
