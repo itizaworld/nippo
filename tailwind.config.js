@@ -20,6 +20,7 @@ module.exports = {
       },
     },
   },
+  darkMode: 'class',
   plugins: [
     nextui({
       layout: {},
@@ -27,12 +28,21 @@ module.exports = {
         light: {
           colors: {
             primary: {
+              background: '#000080',
               DEFAULT: '#6366f1',
               foreground: '#fff',
             },
           },
         },
-        dark: {},
+        dark: {
+          colors: {
+            primary: {
+              background: '#000080',
+              DEFAULT: '#6366f1',
+              foreground: '#ECEDEE',
+            },
+          },
+        },
       },
     }),
   ],

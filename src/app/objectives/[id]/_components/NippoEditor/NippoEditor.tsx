@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useEffect, useCallback, useState, FC } from 'react';
+import { useCallback, useState, FC } from 'react';
 import { debounce } from 'lodash';
 import { postNippo } from '~/app/_actions/nippoActions';
 import { Nippo } from '~/domains/Nippo';
@@ -17,12 +17,6 @@ type Props = {
 export const NippoEditor: FC<Props> = ({ objectiveId, date, todayNippo }) => {
   // NOTE: Loading状態を表示する
   const [isUpdating, setIsUpdating] = useState(false);
-
-  useEffect(() => {
-    if (!document.documentElement) return;
-    // NOTE: 初期はlightモード固定にする。アプリ自体がダークモードに対応したらブラウザの設定に合わせる
-    document.documentElement.setAttribute('data-color-mode', 'light');
-  }, []);
 
   const handleEditorChange = useCallback(
     async (body: string) => {

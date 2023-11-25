@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ja" className="light min-h-[100vh] bg-slate-50">
+    <html lang="ja" className="dark min-h-[100vh] bg-background">
       <body className="min-h-[100vh] flex flex-col">
         <NippoNavbar />
         <div className="flex-1">
