@@ -29,12 +29,10 @@ export default async function Page({ params }: { params: { id: string } }) {
               .filter((nippo) => nippo._id !== todayNippo?._id)
               .map((nippo) => {
                 return (
-                  <>
-                    <p key={nippo._id} className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">
-                      {format(new Date(nippo.date), 'yyyy年 MM月dd日')}
-                    </p>
+                  <div key={nippo._id}>
+                    <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{format(new Date(nippo.date), 'yyyy年 MM月dd日')}</p>
                     <NippoPreview body={nippo.body} />
-                  </>
+                  </div>
                 );
               })}
           </div>
