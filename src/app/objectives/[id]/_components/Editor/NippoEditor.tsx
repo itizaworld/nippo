@@ -3,17 +3,18 @@
 import dynamic from 'next/dynamic';
 import { useEffect, useCallback, useState, FC } from 'react';
 import { postNippo } from '~/app/_actions/nippoActions';
+import { Nippo } from '~/domains/Nippo';
 
 const MarkdownEditor = dynamic(() => import('@uiw/react-markdown-editor').then((mod) => mod.default), { ssr: false });
-
-const mdStr = `# ここにタイトルが入ります  \n## マークダウン形式で記入ができます  \n###### This is a H6`;
 
 type Props = {
   objectiveId: string;
   date: string;
+  todayNippo?: Nippo;
 };
 
-export const NippoEditor: FC<Props> = ({ objectiveId, date }) => {
+export const NippoEditor: FC<Props> = ({ objectiveId, date, todayNippo }) => {
+  const [value, setValue] = useState(todayNippo?.body || '');
   // NOTE: Loading状態を表示する
   const [isUpdating, setIsUpdating] = useState(false);
 
@@ -25,6 +26,7 @@ export const NippoEditor: FC<Props> = ({ objectiveId, date }) => {
 
   const handleEditorChange = useCallback(
     async (body: string) => {
+      setValue(body);
       if (isUpdating) return;
 
       setIsUpdating(true);
@@ -35,5 +37,5 @@ export const NippoEditor: FC<Props> = ({ objectiveId, date }) => {
     [date, isUpdating, objectiveId],
   );
 
-  return <MarkdownEditor height="500px" value={mdStr} onChange={handleEditorChange} />;
+  return <MarkdownEditor height="500px" value={value} onChange={handleEditorChange} />;
 };
