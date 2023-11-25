@@ -12,21 +12,25 @@ export const getObjectiveMe = async () => {
 };
 
 export const getObjective = async (_id: string) => {
-  return await apiGet<{ object: Objective }>(API_OBJECTIVE_ID(_id));
+  return await apiGet<{ objective: Objective }>(API_OBJECTIVE_ID(_id));
 };
 
 export const postObjective = async (name: string) => {
-  return await apiPost<{ object: Objective }>(API_OBJECTIVE(), {
+  return await apiPost<{ objective: Objective }>(API_OBJECTIVE(), {
     body: JSON.stringify({
       name,
       description: name,
     }),
   }).then((res) => {
-    const { _id } = res.object;
+    const { _id } = res.objective;
     redirect(URLS.OBJECTIVE(_id));
   });
 };
 
-export const getObjectiveNippos = async (objectiveId: string) => {
-  return await apiGet<{ nippos: Nippo[] }>(API_OBJECTIVE_ID_NIPPO(objectiveId));
+export const getObjectiveNippos = async ({ objectiveId, isMyObjective }: { objectiveId: string; isMyObjective: boolean }) => {
+  return await apiGet<{ nippos: Nippo[] }>(API_OBJECTIVE_ID_NIPPO(objectiveId), {
+    // NOTE: 自分自身のデータを取得する場合はキャッシュを無効化する
+    cache: isMyObjective ? 'no-store' : undefined,
+    next: isMyObjective ? undefined : { revalidate: 60 },
+  });
 };

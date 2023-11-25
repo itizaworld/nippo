@@ -36,5 +36,12 @@ export const NippoEditor: FC<Props> = ({ objectiveId, date, todayNippo }) => {
     [date, isUpdating, objectiveId],
   );
 
-  return <MarkdownEditor height="500px" value={todayNippo?.body} onChange={debounce(handleEditorChange, 200)} />;
+  return (
+    <MarkdownEditor
+      height="471px" // NOTE: 21pxはツールバーの高さ
+      value={todayNippo?.body}
+      placeholder="今日の振り返りを記入しましょう！"
+      onChange={debounce(handleEditorChange, 200)}
+    />
+  );
 };
