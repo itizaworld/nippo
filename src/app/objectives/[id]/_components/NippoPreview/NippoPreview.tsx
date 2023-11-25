@@ -17,5 +17,11 @@ export const NippoPreview: FC<Props> = ({ body }) => {
     document.documentElement.setAttribute('data-color-mode', 'light');
   }, []);
 
-  return <MarkdownPreview source={body} rehypePlugins={[rehypeSanitize]} />;
+  return (
+    <MarkdownPreview
+      source={body}
+      rehypePlugins={[rehypeSanitize]}
+      style={{ background: 'white', padding: '16px', border: '1px solid hsl(210, 18%, 87%)', borderRadius: '8px' }}
+    />
+  );
 };
