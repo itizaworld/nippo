@@ -31,6 +31,6 @@ export const getObjectiveNippos = async ({ objectiveId, isMyObjective }: { objec
   return await apiGet<{ nippos: Nippo[] }>(API_OBJECTIVE_ID_NIPPO(objectiveId), {
     // NOTE: 自分自身のデータを取得する場合はキャッシュを無効化する
     cache: isMyObjective ? 'no-store' : undefined,
-    next: { revalidate: 60 },
+    next: isMyObjective ? undefined : { revalidate: 60 },
   });
 };
