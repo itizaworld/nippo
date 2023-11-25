@@ -1,10 +1,12 @@
-import { Link } from '@nextui-org/link';
 import { format } from 'date-fns';
 import { getObjective, getObjectiveNippos } from '../../_actions/objectiveActions';
-import { NippoEditor } from './_components/Editor';
+import { NippoEditor } from './_components/NippoEditor';
+import { NippoPreview } from './_components/NippoPreview/NippoPreview';
+import { fetchMe } from '~/app/_actions/userActions';
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const [{ object }, { nippos }] = await Promise.all([getObjective(params.id), getObjectiveNippos(params.id)]);
+  const [{ object }, { currentUser }] = await Promise.all([getObjective(params.id), fetchMe()]);
+  const { nippos } = await getObjectiveNippos({ objectiveId: object._id, isMyObjective: currentUser?._id === object.createdUserId });
   const todayNippo = nippos.find((nippo) => nippo.date === format(new Date(), 'yyyy-MM-dd'));
 
   return (
@@ -16,9 +18,20 @@ export default async function Page({ params }: { params: { id: string } }) {
           <div className="h-[500px]">
             <NippoEditor objectiveId={object._id} date={format(new Date(), 'yyyy-MM-dd')} todayNippo={todayNippo} />
           </div>
-          <Link href="https://twitter.com/same_gum" className="mt-[40px]" target="_blank">
-            開発進捗はXで発信しています
-          </Link>
+          <div className="mt-[40px]">
+            {nippos
+              .filter((nippo) => nippo._id !== todayNippo?._id)
+              .map((nippo) => {
+                return (
+                  <>
+                    <p key={nippo._id} className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">
+                      {format(new Date(nippo.date), 'yyyy年 MM月dd日')}
+                    </p>
+                    <NippoPreview body={nippo.body} />
+                  </>
+                );
+              })}
+          </div>
         </div>
       </div>
     </div>
