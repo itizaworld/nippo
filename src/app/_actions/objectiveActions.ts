@@ -27,6 +27,10 @@ export const postObjective = async (name: string) => {
   });
 };
 
-export const getObjectiveNippos = async (objectiveId: string) => {
-  return await apiGet<{ nippos: Nippo[] }>(API_OBJECTIVE_ID_NIPPO(objectiveId));
+export const getObjectiveNippos = async ({ objectiveId, isMyObjective }: { objectiveId: string; isMyObjective: boolean }) => {
+  return await apiGet<{ nippos: Nippo[] }>(API_OBJECTIVE_ID_NIPPO(objectiveId), {
+    // NOTE: 自分自身のデータを取得する場合はキャッシュを無効化する
+    cache: isMyObjective ? 'no-store' : undefined,
+    next: { revalidate: 60 },
+  });
 };
