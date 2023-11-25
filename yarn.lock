@@ -2580,7 +2580,7 @@
     "@uiw/react-codemirror" "^4.12.3"
     "@uiw/react-markdown-preview" "^5.0.0"
 
-"@uiw/react-markdown-preview@^5.0.0":
+"@uiw/react-markdown-preview@^5.0.0", "@uiw/react-markdown-preview@^5.0.2":
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/@uiw/react-markdown-preview/-/react-markdown-preview-5.0.2.tgz#300a865c00717388781ecbffd5ac014a86264b9d"
   integrity sha512-c6/BhrQ44+K10wQfbjxWuNdhfpFts73kM92w4FWA9JEyPmr6X15i6oHyf/aat+yd4FKi3zdYl+idspW1CoBRag==
