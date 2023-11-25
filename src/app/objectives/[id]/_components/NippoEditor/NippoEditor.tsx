@@ -15,7 +15,6 @@ type Props = {
 };
 
 export const NippoEditor: FC<Props> = ({ objectiveId, date, todayNippo }) => {
-  const [value, setValue] = useState(todayNippo?.body || '');
   // NOTE: Loading状態を表示する
   const [isUpdating, setIsUpdating] = useState(false);
 
@@ -27,7 +26,6 @@ export const NippoEditor: FC<Props> = ({ objectiveId, date, todayNippo }) => {
 
   const handleEditorChange = useCallback(
     async (body: string) => {
-      setValue(body);
       if (isUpdating) return;
 
       setIsUpdating(true);
@@ -41,9 +39,9 @@ export const NippoEditor: FC<Props> = ({ objectiveId, date, todayNippo }) => {
   return (
     <MarkdownEditor
       height="471px" // NOTE: 21pxはツールバーの高さ
-      value={value}
+      value={todayNippo?.body}
       placeholder="今日の振り返りを記入しましょう！"
-      onChange={debounce(handleEditorChange, 500)}
+      onChange={debounce(handleEditorChange, 200)}
     />
   );
 };
