@@ -31,7 +31,7 @@ export const StartButton: FC<Props> = ({ currentUser, objective }) => {
   if (objective) {
     return (
       <Link href={URLS.OBJECTIVE(objective._id)}>
-        <Button className="w-[200px]" color="primary" onClick={handleClickStartButton} variant="bordered">
+        <Button className="w-[200px]" color="primary" variant="bordered">
           再開する
         </Button>
       </Link>
