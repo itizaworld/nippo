@@ -1,10 +1,11 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { API_OBJECTIVE, API_OBJECTIVE_ID, API_OBJECTIVE_ME } from '../_constants/apiUrls';
+import { API_OBJECTIVE, API_OBJECTIVE_ID, API_OBJECTIVE_ID_NIPPO, API_OBJECTIVE_ME } from '../_constants/apiUrls';
 import { URLS } from '../_constants/urls';
 import { Objective } from '~/domains/Objective';
 import { apiGet, apiPost } from '~/libs/apiClient';
+import { Nippo } from '~/domains/Nippo';
 
 export const getObjectiveMe = async () => {
   return await apiGet<{ objective: Objective }>(API_OBJECTIVE_ME());
@@ -24,4 +25,8 @@ export const postObjective = async (name: string) => {
     const { _id } = res.object;
     redirect(URLS.OBJECTIVE(_id));
   });
+};
+
+export const getObjectiveNippos = async (objectiveId: string) => {
+  return await apiGet<{ nippos: Nippo[] }>(API_OBJECTIVE_ID_NIPPO(objectiveId));
 };
