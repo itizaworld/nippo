@@ -12,17 +12,17 @@ export const getObjectiveMe = async () => {
 };
 
 export const getObjective = async (_id: string) => {
-  return await apiGet<{ object: Objective }>(API_OBJECTIVE_ID(_id));
+  return await apiGet<{ objective: Objective }>(API_OBJECTIVE_ID(_id));
 };
 
 export const postObjective = async (name: string) => {
-  return await apiPost<{ object: Objective }>(API_OBJECTIVE(), {
+  return await apiPost<{ objective: Objective }>(API_OBJECTIVE(), {
     body: JSON.stringify({
       name,
       description: name,
     }),
   }).then((res) => {
-    const { _id } = res.object;
+    const { _id } = res.objective;
     redirect(URLS.OBJECTIVE(_id));
   });
 };
