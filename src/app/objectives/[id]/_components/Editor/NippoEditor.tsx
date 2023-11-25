@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 
 const MarkdownEditor = dynamic(() => import('@uiw/react-markdown-editor').then((mod) => mod.default), { ssr: false });
 
-const mdStr = `# This is a H1  \n## This is a H2  \n###### This is a H6`;
+const mdStr = `# ここにタイトルが入ります  \n## マークダウン形式で記入ができます  \n###### This is a H6`;
 
 export const NippoEditor = () => {
   useEffect(() => {
