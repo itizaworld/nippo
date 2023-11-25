@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import { useEffect, useCallback, useState, FC } from 'react';
+import { debounce } from 'lodash';
 import { postNippo } from '~/app/_actions/nippoActions';
 import { Nippo } from '~/domains/Nippo';
 
@@ -37,5 +38,5 @@ export const NippoEditor: FC<Props> = ({ objectiveId, date, todayNippo }) => {
     [date, isUpdating, objectiveId],
   );
 
-  return <MarkdownEditor height="500px" value={value} onChange={handleEditorChange} />;
+  return <MarkdownEditor height="500px" value={value} onChange={debounce(handleEditorChange, 200)} />;
 };
