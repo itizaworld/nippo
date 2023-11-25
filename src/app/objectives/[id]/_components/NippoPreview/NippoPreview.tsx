@@ -1,10 +1,8 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import { useEffect, FC } from 'react';
 import rehypeSanitize from 'rehype-sanitize';
-
-const MarkdownPreview = dynamic(() => import('@uiw/react-markdown-preview').then((mod) => mod.default), { ssr: false });
+import MarkdownPreview from '@uiw/react-markdown-preview';
 
 type Props = {
   body: string;
