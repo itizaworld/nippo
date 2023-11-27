@@ -26,8 +26,8 @@ export const postObjective = async (name: string) => {
       description: name,
     }),
   }).then((res) => {
-    const { _id } = res.objective;
-    redirect(URLS.OBJECTIVE(_id));
+    const { slug } = res.objective;
+    redirect(URLS.SLUG(slug));
   });
 };
 
