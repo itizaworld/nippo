@@ -30,7 +30,7 @@ export const StartButton: FC<Props> = ({ currentUser, objective }) => {
 
   if (objective) {
     return (
-      <Link href={URLS.OBJECTIVE(objective._id)}>
+      <Link href={URLS.SLUG(objective.slug)}>
         <Button className="w-[200px]" color="primary" variant="bordered">
           再開する
         </Button>
