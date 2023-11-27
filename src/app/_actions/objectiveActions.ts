@@ -1,7 +1,7 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { API_OBJECTIVE, API_OBJECTIVE_ID, API_OBJECTIVE_ID_NIPPO, API_OBJECTIVE_ME } from '../_constants/apiUrls';
+import { API_OBJECTIVE, API_OBJECTIVE_ID, API_OBJECTIVE_ID_NIPPO, API_OBJECTIVE_ME, API_OBJECTIVE_SLUG } from '../_constants/apiUrls';
 import { URLS } from '../_constants/urls';
 import { Objective } from '~/domains/Objective';
 import { apiGet, apiPost } from '~/libs/apiClient';
@@ -15,6 +15,10 @@ export const getObjective = async (_id: string) => {
   return await apiGet<{ objective: Objective }>(API_OBJECTIVE_ID(_id));
 };
 
+export const getObjectiveBySlug = async (slug: string) => {
+  return await apiGet<{ objective: Objective }>(API_OBJECTIVE_SLUG(slug));
+};
+
 export const postObjective = async (name: string) => {
   return await apiPost<{ objective: Objective }>(API_OBJECTIVE(), {
     body: JSON.stringify({
@@ -22,8 +26,8 @@ export const postObjective = async (name: string) => {
       description: name,
     }),
   }).then((res) => {
-    const { _id } = res.objective;
-    redirect(URLS.OBJECTIVE(_id));
+    const { slug } = res.objective;
+    redirect(URLS.SLUG(slug));
   });
 };
 
