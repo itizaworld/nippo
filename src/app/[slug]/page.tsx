@@ -1,12 +1,12 @@
 import { format } from 'date-fns';
-import { getObjective, getObjectiveNippos } from '../../_actions/objectiveActions';
+import { getObjectiveBySlug, getObjectiveNippos } from '../_actions/objectiveActions';
 import { NippoEditor } from './_components/NippoEditor';
 import { NippoPreview } from './_components/NippoPreview/NippoPreview';
 import { fetchMe } from '~/app/_actions/userActions';
 import { getCurrentDate } from '~/libs/getCurrentDate';
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const [{ objective }, { currentUser }] = await Promise.all([getObjective(params.id), fetchMe()]);
+export default async function Page({ params }: { params: { slug: string } }) {
+  const [{ objective }, { currentUser }] = await Promise.all([getObjectiveBySlug(params.slug), fetchMe()]);
   const { nippos } = await getObjectiveNippos({ objectiveId: objective._id, isMyObjective: currentUser?._id === objective.createdUserId });
 
   const todayNippo = nippos.find((nippo) => nippo.date === format(getCurrentDate(), 'yyyy-MM-dd'));
