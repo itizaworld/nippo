@@ -1,11 +1,22 @@
 import { format } from 'date-fns';
+import { Metadata } from 'next';
 import { NippoPreview } from '~/app/_components/domains/Nippo/NippoPreview/NippoPreview';
 import { getNippoByDate } from '~/app/_actions/nippoActions';
 import { getObjectiveBySlug } from '~/app/_actions/objectiveActions';
 
-export default async function Page({ params }: { params: { slug: string; date: string } }) {
+type Props = { params: { slug: string; date: string } };
+
+const getDateString = (date: string) => format(new Date(date), 'yyyy年 MM月dd日');
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const [{ objective }, { nippo }] = await Promise.all([getObjectiveBySlug(params.slug), getNippoByDate(params.date)]);
-  const dateString = format(new Date(nippo.date), 'yyyy年 MM月dd日');
+
+  return { title: `${objective.name}:${nippo.date}` };
+}
+
+export default async function Page({ params }: Props) {
+  const [{ objective }, { nippo }] = await Promise.all([getObjectiveBySlug(params.slug), getNippoByDate(params.date)]);
+  const dateString = getDateString(nippo.date);
 
   return (
     <div className="drop-shadow-sm">

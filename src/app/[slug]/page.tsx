@@ -1,11 +1,20 @@
 import { format } from 'date-fns';
 import { Link } from '@nextui-org/link';
+import { Metadata } from 'next';
 import { getObjectiveBySlug, getObjectiveNippos } from '../_actions/objectiveActions';
 import { URLS } from '../_constants/urls';
 import { NippoEditor } from '~/app/_components/domains/Nippo/NippoEditor';
 import { NippoPreview } from '~/app/_components/domains/Nippo/NippoPreview';
 import { fetchMe } from '~/app/_actions/userActions';
 import { getCurrentDate } from '~/libs/getCurrentDate';
+
+type Props = { params: { slug: string } };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { objective } = await getObjectiveBySlug(params.slug);
+
+  return { title: objective.name };
+}
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const [{ objective }, { currentUser }] = await Promise.all([getObjectiveBySlug(params.slug), fetchMe()]);
