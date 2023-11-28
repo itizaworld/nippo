@@ -18,7 +18,7 @@ export const generateNippoMetadata = ({ title = DEFAULT_TITLE, description = DEF
       title,
       description,
       url,
-      siteName: title,
+      siteName: 'みんなの日報',
       locale: 'ja_JP',
       type: 'website',
     },
