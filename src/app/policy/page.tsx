@@ -1,4 +1,3 @@
-// app/page.tsx
 import { Card } from '@nextui-org/card';
 
 export default async function Page() {

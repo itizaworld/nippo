@@ -3,6 +3,8 @@ import { Metadata } from 'next';
 import { NippoPreview } from '~/app/_components/domains/Nippo/NippoPreview/NippoPreview';
 import { getNippoByDate } from '~/app/_actions/nippoActions';
 import { getObjectiveBySlug } from '~/app/_actions/objectiveActions';
+import { URLS } from '~/app/_constants/urls';
+import { generateNippoMetadata } from '~/libs/generateNippoMetadata';
 
 type Props = { params: { slug: string; date: string } };
 
@@ -11,7 +13,7 @@ const getDateString = (date: string) => format(new Date(date), 'yyyy年 MM月dd�
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const [{ objective }, { nippo }] = await Promise.all([getObjectiveBySlug(params.slug), getNippoByDate(params.date)]);
 
-  return { title: `${objective.name}:${nippo.date}` };
+  return generateNippoMetadata({ title: `${objective.name}:${nippo.date}`, url: URLS.SLUG_DATE(params.slug, params.date) });
 }
 
 export default async function Page({ params }: Props) {

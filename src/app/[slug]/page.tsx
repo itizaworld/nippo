@@ -7,13 +7,14 @@ import { NippoEditor } from '~/app/_components/domains/Nippo/NippoEditor';
 import { NippoPreview } from '~/app/_components/domains/Nippo/NippoPreview';
 import { fetchMe } from '~/app/_actions/userActions';
 import { getCurrentDate } from '~/libs/getCurrentDate';
+import { generateNippoMetadata } from '~/libs/generateNippoMetadata';
 
 type Props = { params: { slug: string } };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { objective } = await getObjectiveBySlug(params.slug);
 
-  return { title: objective.name };
+  return generateNippoMetadata({ title: objective.name, url: URLS.SLUG(params.slug) });
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
