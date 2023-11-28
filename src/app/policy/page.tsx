@@ -1,5 +1,9 @@
 import { Card } from '@nextui-org/card';
+import { generateNippoMetadata } from '~/libs/generateNippoMetadata';
 
+export async function generateMetadata() {
+  return generateNippoMetadata({ title: 'みんなの日報：プライバシーポリシー' });
+}
 export default async function Page() {
   return (
     <div className="max-w-[600px] mx-auto justify-center gap-[16px] py-[24px] p-[16px]">
