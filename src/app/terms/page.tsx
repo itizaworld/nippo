@@ -2,6 +2,11 @@
 import { Card } from '@nextui-org/card';
 import { Link } from '@nextui-org/link';
 import { URLS } from '../_constants/urls';
+import { generateNippoMetadata } from '~/libs/generateNippoMetadata';
+
+export async function generateMetadata() {
+  return generateNippoMetadata({ title: 'みんなの日報：利用規約' });
+}
 
 export default async function Page() {
   return (

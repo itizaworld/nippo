@@ -1,7 +1,7 @@
 'use server';
 
-import { API_OBJECTIVE_ID_NIPPO } from '../_constants/apiUrls';
-import { apiPost } from '~/libs/apiClient';
+import { API_NIPPO_BY_DATE, API_OBJECTIVE_ID_NIPPO } from '../_constants/apiUrls';
+import { apiGet, apiPost } from '~/libs/apiClient';
 import { Nippo } from '~/domains/Nippo';
 
 export const postNippo = async ({ objectiveId, body, date }: { objectiveId: string; body: string; date: string }) => {
@@ -11,4 +11,8 @@ export const postNippo = async ({ objectiveId, body, date }: { objectiveId: stri
       date,
     }),
   });
+};
+
+export const getNippoByDate = async (date: string) => {
+  return await apiGet<{ nippo: Nippo }>(API_NIPPO_BY_DATE(date));
 };
