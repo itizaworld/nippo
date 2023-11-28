@@ -1,9 +1,21 @@
 import { format } from 'date-fns';
+import { Link } from '@nextui-org/link';
+import { Metadata } from 'next';
 import { getObjectiveBySlug, getObjectiveNippos } from '../_actions/objectiveActions';
-import { NippoEditor } from './_components/NippoEditor';
-import { NippoPreview } from './_components/NippoPreview/NippoPreview';
+import { URLS } from '../_constants/urls';
+import { NippoEditor } from '~/app/_components/domains/Nippo/NippoEditor';
+import { NippoPreview } from '~/app/_components/domains/Nippo/NippoPreview';
 import { fetchMe } from '~/app/_actions/userActions';
 import { getCurrentDate } from '~/libs/getCurrentDate';
+import { generateNippoMetadata } from '~/libs/generateNippoMetadata';
+
+type Props = { params: { slug: string } };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { objective } = await getObjectiveBySlug(params.slug);
+
+  return generateNippoMetadata({ title: objective.name, url: URLS.SLUG(params.slug) });
+}
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const [{ objective }, { currentUser }] = await Promise.all([getObjectiveBySlug(params.slug), fetchMe()]);
@@ -32,7 +44,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
               .map((nippo) => {
                 return (
                   <div key={nippo._id}>
-                    <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{format(new Date(nippo.date), 'yyyy年 MM月dd日')}</p>
+                    <Link href={URLS.SLUG_DATE(objective.slug, nippo.date)}>
+                      <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{format(new Date(nippo.date), 'yyyy年 MM月dd日')}</p>
+                    </Link>
                     <NippoPreview body={nippo.body} />
                   </div>
                 );
