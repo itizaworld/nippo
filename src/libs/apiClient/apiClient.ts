@@ -35,9 +35,7 @@ export const handler = async <T>(path: string, method: 'GET' | 'POST' | 'PATCH' 
     return data;
   }
 
-  console.error('response.ok:', response.ok);
-  console.error('esponse.status:', response.status);
-  console.error('esponse.statusText:', response.statusText);
+  console.error('ERROR:', { statusCode: response.status, statusText: response.statusText, url, method, options });
   throw new Error(response.statusText);
 };
 
