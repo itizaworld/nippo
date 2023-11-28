@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import { getObjectiveBySlug, getObjectiveNippos } from '../_actions/objectiveActions';
-import { NippoEditor } from './_components/NippoEditor';
-import { NippoPreview } from './_components/NippoPreview/NippoPreview';
+import { NippoEditor } from '~/app/_components/domains/Nippo/NippoEditor';
+import { NippoPreview } from '~/app/_components/domains/Nippo/NippoPreview';
 import { fetchMe } from '~/app/_actions/userActions';
 import { getCurrentDate } from '~/libs/getCurrentDate';
 
