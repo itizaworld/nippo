@@ -4,6 +4,7 @@ export const URLS = {
   TOP: '/',
   NOTE_NEW: '/notes/new',
   SLUG: (slug: string) => `/${slug}`,
+  SLUG_DATE: (slug: string, date: string) => `/${slug}/${date}`,
   TERM: `${frontUrl}/terms`,
   POLICY: `${frontUrl}/policy`,
   LOGIN_TO_BACKEND: `${serverUrl}/auth/google`,

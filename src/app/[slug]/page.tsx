@@ -1,5 +1,7 @@
 import { format } from 'date-fns';
+import { Link } from '@nextui-org/link';
 import { getObjectiveBySlug, getObjectiveNippos } from '../_actions/objectiveActions';
+import { URLS } from '../_constants/urls';
 import { NippoEditor } from '~/app/_components/domains/Nippo/NippoEditor';
 import { NippoPreview } from '~/app/_components/domains/Nippo/NippoPreview';
 import { fetchMe } from '~/app/_actions/userActions';
@@ -32,7 +34,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
               .map((nippo) => {
                 return (
                   <div key={nippo._id}>
-                    <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{format(new Date(nippo.date), 'yyyy年 MM月dd日')}</p>
+                    <Link href={URLS.SLUG_DATE(objective.slug, nippo.date)}>
+                      <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{format(new Date(nippo.date), 'yyyy年 MM月dd日')}</p>
+                    </Link>
                     <NippoPreview body={nippo.body} />
                   </div>
                 );
