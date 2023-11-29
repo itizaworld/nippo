@@ -34,7 +34,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
               <NippoEditor objectiveId={objective._id} date={format(getCurrentDate(), 'yyyy-MM-dd')} nippo={todayNippo} />
             </div>
           ) : (
-            <NippoPreview body={todayNippo ? todayNippo.body : '今日の日報はまだありません'} />
+            <NippoPreview body={todayNippo?.body} date={format(getCurrentDate(), 'yyyy-MM-dd')} />
           )}
           <div className="mt-[40px]">
             {nippos
@@ -45,7 +45,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                     <Link href={URLS.SLUG_DATE(objective.slug, nippo.date)} className="cursor-pointer">
                       <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{format(new Date(nippo.date), 'yyyy年 MM月dd日')}</p>
                     </Link>
-                    <NippoPreview body={nippo.body} />
+                    <NippoPreview body={nippo.body} date={nippo.date} />
                   </div>
                 );
               })}

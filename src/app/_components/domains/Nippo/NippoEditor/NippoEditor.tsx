@@ -40,7 +40,7 @@ export const NippoEditor: FC<Props> = ({ objectiveId, date, nippo }) => {
     <MarkdownEditor
       height="471px" // NOTE: 21pxはツールバーの高さ
       value={nippo?.body}
-      placeholder="今日の振り返りを記入しましょう！"
+      placeholder="振り返りを記入しましょう！"
       onChange={debounce(handleEditorChange, 200)}
     />
   );
