@@ -14,5 +14,5 @@ export const postNippo = async ({ objectiveId, body, date }: { objectiveId: stri
 };
 
 export const getNippoByDate = async (slug: string, date: string) => {
-  return await apiGet<{ nippo: Nippo }>(API_NIPPO_BY_DATE(slug, date));
+  return await apiGet<{ nippo?: Nippo }>(API_NIPPO_BY_DATE(slug, date));
 };
