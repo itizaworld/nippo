@@ -31,7 +31,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{format(getCurrentDate(), 'yyyy年 MM月dd日')}</p>
           {currentUser?._id === objective.createdUserId ? (
             <div className="h-[500px]">
-              <NippoEditor objectiveId={objective._id} date={format(getCurrentDate(), 'yyyy-MM-dd')} todayNippo={todayNippo} />
+              <NippoEditor objectiveId={objective._id} date={format(getCurrentDate(), 'yyyy-MM-dd')} nippo={todayNippo} />
             </div>
           ) : (
             <NippoPreview body={todayNippo ? todayNippo.body : '今日の日報はまだありません'} />

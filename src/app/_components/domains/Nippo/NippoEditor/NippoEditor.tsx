@@ -11,10 +11,10 @@ const MarkdownEditor = dynamic(() => import('@uiw/react-markdown-editor').then((
 type Props = {
   objectiveId: string;
   date: string;
-  todayNippo?: Nippo;
+  nippo?: Nippo;
 };
 
-export const NippoEditor: FC<Props> = ({ objectiveId, date, todayNippo }) => {
+export const NippoEditor: FC<Props> = ({ objectiveId, date, nippo }) => {
   // NOTE: Loading状態を表示する
   const [isUpdating, setIsUpdating] = useState(false);
 
@@ -39,7 +39,7 @@ export const NippoEditor: FC<Props> = ({ objectiveId, date, todayNippo }) => {
   return (
     <MarkdownEditor
       height="471px" // NOTE: 21pxはツールバーの高さ
-      value={todayNippo?.body}
+      value={nippo?.body}
       placeholder="今日の振り返りを記入しましょう！"
       onChange={debounce(handleEditorChange, 200)}
     />
