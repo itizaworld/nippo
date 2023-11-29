@@ -3,6 +3,7 @@
 import { useEffect, FC } from 'react';
 import rehypeSanitize from 'rehype-sanitize';
 import MarkdownPreview from '@uiw/react-markdown-preview';
+import { getDateString } from '~/libs/getDateString';
 
 type Props = {
   body?: string;
@@ -18,7 +19,7 @@ export const NippoPreview: FC<Props> = ({ body, date }) => {
 
   return (
     <MarkdownPreview
-      source={body || `${date}の日報はまだありません`}
+      source={body || `${getDateString(date)}の日報はまだありません`}
       rehypePlugins={[rehypeSanitize]}
       style={{ background: 'white', padding: '16px', border: '1px solid hsl(210, 18%, 87%)', borderRadius: '8px' }}
     />
