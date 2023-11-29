@@ -44,7 +44,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
               .map((nippo) => {
                 return (
                   <div key={nippo._id}>
-                    <Link href={URLS.SLUG_DATE(objective.slug, nippo.date)}>
+                    <Link href={URLS.SLUG_DATE(objective.slug, nippo.date)} className="cursor-pointer">
                       <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{format(new Date(nippo.date), 'yyyy年 MM月dd日')}</p>
                     </Link>
                     <NippoPreview body={nippo.body} />
