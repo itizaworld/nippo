@@ -11,13 +11,13 @@ type Props = { params: { slug: string; date: string } };
 const getDateString = (date: string) => format(new Date(date), 'yyyy年 MM月dd日');
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const [{ objective }, { nippo }] = await Promise.all([getObjectiveBySlug(params.slug), getNippoByDate(params.date)]);
+  const [{ objective }, { nippo }] = await Promise.all([getObjectiveBySlug(params.slug), getNippoByDate(params.slug, params.date)]);
 
   return generateNippoMetadata({ title: `${objective.name}:${nippo.date}`, url: URLS.SLUG_DATE(params.slug, params.date) });
 }
 
 export default async function Page({ params }: Props) {
-  const [{ objective }, { nippo }] = await Promise.all([getObjectiveBySlug(params.slug), getNippoByDate(params.date)]);
+  const [{ objective }, { nippo }] = await Promise.all([getObjectiveBySlug(params.slug), getNippoByDate(params.slug, params.date)]);
   const dateString = getDateString(nippo.date);
 
   return (
