@@ -33,10 +33,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
             <div className="h-[500px]">
               <NippoEditor objectiveId={objective._id} date={format(getCurrentDate(), 'yyyy-MM-dd')} todayNippo={todayNippo} />
             </div>
-          ) : todayNippo ? (
-            <NippoPreview body={todayNippo.body} />
           ) : (
-            <div>今日の日報はまだありません</div>
+            <NippoPreview body={todayNippo ? todayNippo.body : '今日の日報はまだありません'} />
           )}
           <div className="mt-[40px]">
             {nippos
