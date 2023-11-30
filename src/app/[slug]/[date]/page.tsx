@@ -1,4 +1,3 @@
-import { format } from 'date-fns';
 import { Metadata } from 'next';
 import { NippoPreview } from '~/app/_components/domains/Nippo/NippoPreview/NippoPreview';
 import { getNippoByDate } from '~/app/_actions/nippoActions';
@@ -6,7 +5,6 @@ import { getObjectiveBySlug } from '~/app/_actions/objectiveActions';
 import { URLS } from '~/app/_constants/urls';
 import { generateNippoMetadata } from '~/libs/generateNippoMetadata';
 import { fetchMe } from '~/app/_actions/userActions';
-import { getCurrentDate } from '~/libs/getCurrentDate';
 import { NippoEditor } from '~/app/_components/domains/Nippo/NippoEditor';
 import { Tabs } from '~/app/_components/uiParts/Tabs';
 import { getDateString } from '~/libs/getDateString';
@@ -40,7 +38,7 @@ export default async function Page({ params }: Props) {
                 {
                   title: 'エディター',
                   key: 'editor',
-                  children: <NippoEditor objectiveId={objective._id} date={format(getCurrentDate(), 'yyyy-MM-dd')} nippo={nippo} />,
+                  children: <NippoEditor objectiveId={objective._id} date={params.date} nippo={nippo} />,
                 },
                 {
                   title: 'プレビュー',
