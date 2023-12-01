@@ -29,7 +29,7 @@ export default async function Page({ params }: Props) {
 
   return (
     <div className="drop-shadow-sm">
-      <div className="min-h-[500px] max-w-[1024px] mx-auto flex flex-col-reverse md:flex-row gap-[16px] md:gap-[48px]">
+      <div className="min-h-[500px] max-w-[1024px] mx-auto flex gap-[16px] md:gap-[48px]">
         <div className="px-[8px] pt-[16px] pb-[32px] w-[100%]">
           <ObjectiveStickyHeader objective={objective} />
           <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{dateString}</p>
