@@ -29,7 +29,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <div className="min-h-[500px] max-w-[1024px] mx-auto flex gap-[16px] md:gap-[48px]">
         <div className="px-[8px] pt-[16px] pb-[32px] w-[100%]">
           <ObjectiveStickyHeader objective={objective} />
-          <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{format(getCurrentDate(), 'yyyy年 MM月dd日')}</p>
+          <Link href={URLS.SLUG_DATE(objective.slug, format(getCurrentDate(), 'yyyy-MM-dd'))} className="cursor-pointer">
+            <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{format(getCurrentDate(), 'yyyy年 MM月dd日')}</p>
+          </Link>
           {currentUser?._id === objective.createdUserId ? (
             <div className="h-[500px]">
               <NippoEditor objectiveId={objective._id} date={format(getCurrentDate(), 'yyyy-MM-dd')} nippo={todayNippo} />
