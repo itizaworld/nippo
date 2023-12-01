@@ -3,6 +3,7 @@ import { Link } from '@nextui-org/link';
 import { Metadata } from 'next';
 import { getObjectiveBySlug, getObjectiveNippos } from '../_actions/objectiveActions';
 import { URLS } from '../_constants/urls';
+import { ObjectiveStickyHeader } from '../_components/domains/Objective/ObjectiveStickyHeader';
 import { NippoEditor } from '~/app/_components/domains/Nippo/NippoEditor';
 import { NippoPreview } from '~/app/_components/domains/Nippo/NippoPreview';
 import { fetchMe } from '~/app/_actions/userActions';
@@ -27,7 +28,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     <div className="drop-shadow-sm">
       <div className="min-h-[500px] max-w-[1024px] mx-auto flex flex-col-reverse md:flex-row gap-[16px] md:gap-[48px]">
         <div className="px-[8px] pt-[16px] pb-[32px] w-[100%]">
-          <h1 className="text-2xl font-bold pb-[8px] border-b-1">{objective.name}</h1>
+          <ObjectiveStickyHeader objective={objective} />
           <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{format(getCurrentDate(), 'yyyy年 MM月dd日')}</p>
           {currentUser?._id === objective.createdUserId ? (
             <div className="h-[500px]">
