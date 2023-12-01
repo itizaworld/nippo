@@ -9,7 +9,7 @@ export const NippoNavbar: FC = async () => {
   const { currentUser } = await fetchMe();
 
   return (
-    <Navbar isBordered isBlurred={false}>
+    <Navbar isBordered isBlurred={false} position="static">
       <NavbarBrand>
         <Link href="/" color="foreground" className="font-bold">
           みんなの日報
