@@ -3,7 +3,7 @@
 import './styles.scss';
 
 import { Color } from '@tiptap/extension-color';
-import { useEffect, useCallback, useState, FC } from 'react';
+import { useEffect, useState, FC, useCallback } from 'react';
 import { EditorContent, useEditor } from '@tiptap/react';
 import TextStyle from '@tiptap/extension-text-style';
 import Placeholder from '@tiptap/extension-placeholder';
@@ -14,6 +14,7 @@ import { format } from 'date-fns';
 import { postNippo } from '~/app/_actions/nippoActions';
 import { Nippo } from '~/domains/Nippo';
 import { getCurrentDate } from '~/libs/getCurrentDate';
+import { useDebounce } from '~/libs/useDebounce';
 
 type Props = {
   objectiveId: string;
@@ -22,26 +23,19 @@ type Props = {
 };
 
 export const NippoEditor: FC<Props> = ({ objectiveId, nippo, editable }) => {
-  // NOTE: Loading状態を表示する
-  const [isUpdating, setIsUpdating] = useState(false);
-
-  useEffect(() => {
-    if (!document.documentElement) return;
-    // NOTE: 初期はlightモード固定にする。アプリ自体がダークモードに対応したらブラウザの設定に合わせる
-    document.documentElement.setAttribute('data-color-mode', 'light');
-  }, []);
+  const [inputText, setInputText] = useState<string>();
+  const debouncedInputText = useDebounce({ value: inputText, delay: 200 });
 
   const handleEditorChange = useCallback(
     async (body: string) => {
-      if (isUpdating) return;
-
-      setIsUpdating(true);
-      await postNippo({ objectiveId, date: nippo?.date || format(getCurrentDate(), 'yyyy-MM-dd'), body }).finally(() => {
-        setIsUpdating(false);
-      });
+      await postNippo({ objectiveId, date: nippo?.date || format(getCurrentDate(), 'yyyy-MM-dd'), body });
     },
-    [isUpdating, nippo?.date, objectiveId],
+    [nippo?.date, objectiveId],
   );
+
+  useEffect(() => {
+    debouncedInputText && handleEditorChange(debouncedInputText);
+  }, [debouncedInputText, handleEditorChange]);
 
   const extensions = [
     Color.configure({ types: [TextStyle.name, ListItem.name] }),
@@ -66,10 +60,10 @@ export const NippoEditor: FC<Props> = ({ objectiveId, nippo, editable }) => {
   const editor = useEditor({
     extensions,
     content: nippo?.body,
-    autofocus: true,
+    autofocus: 'end',
     editable,
     onUpdate: ({ editor }) => {
-      handleEditorChange(editor.getHTML());
+      setInputText(editor.getHTML());
     },
     editorProps: {
       attributes: {
