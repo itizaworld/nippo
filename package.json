@@ -20,8 +20,6 @@
     "@tiptap/pm": "^2.1.13",
     "@tiptap/react": "^2.1.13",
     "@tiptap/starter-kit": "^2.1.13",
-    "@uiw/react-markdown-editor": "^6.0.0",
-    "@uiw/react-markdown-preview": "^5.0.2",
     "date-fns": "^2.30.0",
     "framer-motion": "^10.16.4",
     "lodash": "^4.17.21",
