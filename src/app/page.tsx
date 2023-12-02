@@ -1,11 +1,17 @@
 import { Link } from '@nextui-org/link';
+import { redirect } from 'next/navigation';
 import { StartButton } from './_components/domains/Objective/StartButton';
 import { fetchMe } from './_actions/userActions';
 import { getObjectiveMe } from './_actions/objectiveActions';
+import { URLS } from './_constants/urls';
 
 export default async function Page() {
   const { currentUser } = await fetchMe();
   const objective = currentUser ? (await getObjectiveMe()).objective : undefined;
+
+  if (objective) {
+    redirect(URLS.SLUG(objective.slug));
+  }
 
   return (
     <div className="drop-shadow-sm">
