@@ -30,7 +30,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           <ObjectiveStickyHeader objective={objective} />
 
           <Link href={URLS.SLUG_DATE(objective.slug, format(getCurrentDate(), 'yyyy-MM-dd'))} className="cursor-pointer">
-            <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{format(getCurrentDate(), 'yyyy年 MM月dd日')}</p>
+            <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{format(getCurrentDate(), 'yyyy年MM月dd日')}</p>
           </Link>
           <NippoEditor objectiveId={objective._id} nippo={todayNippo} editable={false} />
           {nippos
@@ -39,7 +39,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
               return (
                 <div key={nippo._id}>
                   <Link href={URLS.SLUG_DATE(objective.slug, nippo.date)} className="cursor-pointer">
-                    <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{format(new Date(nippo.date), 'yyyy年 MM月dd日')}</p>
+                    <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{format(new Date(nippo.date), 'yyyy年MM月dd日')}</p>
                   </Link>
                   <NippoEditor objectiveId={objective._id} nippo={nippo} editable={false} />
                 </div>
