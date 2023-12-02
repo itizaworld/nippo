@@ -7,6 +7,7 @@ import { fetchMe } from '~/app/_actions/userActions';
 import { NippoEditor } from '~/app/_components/domains/Nippo/NippoEditor';
 import { getDateString } from '~/libs/getDateString';
 import { ObjectiveStickyHeader } from '~/app/_components/domains/Objective/ObjectiveStickyHeader';
+import { NippoPreview } from '~/app/_components/domains/Nippo/NippoPreview';
 
 type Props = { params: { slug: string; date: string } };
 
@@ -31,7 +32,11 @@ export default async function Page({ params }: Props) {
         <div className="px-[8px] pt-[16px] pb-[32px] w-[100%]">
           <ObjectiveStickyHeader objective={objective} />
           <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{dateString}</p>
-          <NippoEditor objectiveId={objective._id} nippo={nippo} editable={currentUser?._id === objective.createdUserId} />
+          {currentUser?._id === objective.createdUserId ? (
+            <NippoEditor objectiveId={objective._id} nippo={nippo} />
+          ) : (
+            <NippoPreview nippo={nippo} />
+          )}
         </div>
       </div>
     </div>

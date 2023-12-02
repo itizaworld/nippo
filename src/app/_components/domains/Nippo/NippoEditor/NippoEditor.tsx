@@ -19,10 +19,9 @@ import { useDebounce } from '~/libs/useDebounce';
 type Props = {
   objectiveId: string;
   nippo?: Nippo;
-  editable: boolean;
 };
 
-export const NippoEditor: FC<Props> = ({ objectiveId, nippo, editable }) => {
+export const NippoEditor: FC<Props> = ({ objectiveId, nippo }) => {
   const [inputText, setInputText] = useState<string>();
   const debouncedInputText = useDebounce({ value: inputText, delay: 200 });
 
@@ -61,13 +60,12 @@ export const NippoEditor: FC<Props> = ({ objectiveId, nippo, editable }) => {
     extensions,
     content: nippo?.body,
     autofocus: 'end',
-    editable,
     onUpdate: ({ editor }) => {
       setInputText(editor.getHTML());
     },
     editorProps: {
       attributes: {
-        class: editable ? 'min-h-[400px]' : '',
+        class: 'min-h-[400px]',
       },
     },
   });

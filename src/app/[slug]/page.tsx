@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 import { getObjectiveBySlug, getObjectiveNippos } from '../_actions/objectiveActions';
 import { URLS } from '../_constants/urls';
 import { ObjectiveStickyHeader } from '../_components/domains/Objective/ObjectiveStickyHeader';
-import { NippoEditor } from '~/app/_components/domains/Nippo/NippoEditor';
+import { NippoPreview } from '../_components/domains/Nippo/NippoPreview';
 import { fetchMe } from '~/app/_actions/userActions';
 import { getCurrentDate } from '~/libs/getCurrentDate';
 import { generateNippoMetadata } from '~/libs/generateNippoMetadata';
@@ -32,7 +32,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           <Link href={URLS.SLUG_DATE(objective.slug, format(getCurrentDate(), 'yyyy-MM-dd'))} className="cursor-pointer">
             <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{format(getCurrentDate(), 'yyyy年MM月dd日')}</p>
           </Link>
-          <NippoEditor objectiveId={objective._id} nippo={todayNippo} editable={false} />
+          <NippoPreview nippo={todayNippo} />
           {nippos
             .filter((nippo) => nippo._id !== todayNippo?._id)
             .map((nippo) => {
@@ -41,7 +41,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                   <Link href={URLS.SLUG_DATE(objective.slug, nippo.date)} className="cursor-pointer">
                     <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{format(new Date(nippo.date), 'yyyy年MM月dd日')}</p>
                   </Link>
-                  <NippoEditor objectiveId={objective._id} nippo={nippo} editable={false} />
+                  <NippoPreview nippo={nippo} />
                 </div>
               );
             })}
