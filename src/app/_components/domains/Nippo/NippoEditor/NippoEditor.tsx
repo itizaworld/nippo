@@ -1,8 +1,15 @@
 'use client';
 
+import './styles.scss';
+
+import { Color } from '@tiptap/extension-color';
 import dynamic from 'next/dynamic';
 import { useEffect, useCallback, useState, FC } from 'react';
 import { debounce } from 'lodash';
+import { EditorContent, useEditor } from '@tiptap/react';
+import TextStyle from '@tiptap/extension-text-style';
+import StarterKit from '@tiptap/starter-kit';
+import ListItem from '@tiptap/extension-list-item';
 import { postNippo } from '~/app/_actions/nippoActions';
 import { Nippo } from '~/domains/Nippo';
 
@@ -36,11 +43,31 @@ export const NippoEditor: FC<Props> = ({ objectiveId, date, nippo }) => {
     [date, isUpdating, objectiveId],
   );
 
+  const extensions = [
+    Color.configure({ types: [TextStyle.name, ListItem.name] }),
+    StarterKit.configure({
+      bulletList: {
+        keepMarks: true,
+        keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
+      },
+      orderedList: {
+        keepMarks: true,
+        keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
+      },
+    }),
+  ];
+
+  const editor = useEditor({
+    extensions,
+    content: nippo?.body,
+  });
+
+  return <EditorContent editor={editor} placeholder="振り返りを記入しましょう！" />;
+
   return (
     <MarkdownEditor
       height="471px" // NOTE: 21pxはツールバーの高さ
       value={nippo?.body}
-      placeholder="振り返りを記入しましょう！"
       onChange={debounce(handleEditorChange, 200)}
     />
   );
