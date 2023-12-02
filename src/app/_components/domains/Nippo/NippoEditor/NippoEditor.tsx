@@ -71,6 +71,11 @@ export const NippoEditor: FC<Props> = ({ objectiveId, nippo, editable }) => {
     onUpdate: ({ editor }) => {
       handleEditorChange(editor.getHTML());
     },
+    editorProps: {
+      attributes: {
+        class: editable ? 'min-h-[400px]' : '',
+      },
+    },
   });
 
   return <EditorContent editor={editor} />;
