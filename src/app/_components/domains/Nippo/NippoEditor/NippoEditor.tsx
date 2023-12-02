@@ -3,27 +3,25 @@
 import './styles.scss';
 
 import { Color } from '@tiptap/extension-color';
-import dynamic from 'next/dynamic';
 import { useEffect, useCallback, useState, FC } from 'react';
-import { debounce } from 'lodash';
 import { EditorContent, useEditor } from '@tiptap/react';
 import TextStyle from '@tiptap/extension-text-style';
 import Placeholder from '@tiptap/extension-placeholder';
 import StarterKit from '@tiptap/starter-kit';
 import ListItem from '@tiptap/extension-list-item';
 import Heading from '@tiptap/extension-heading';
+import { format } from 'date-fns';
 import { postNippo } from '~/app/_actions/nippoActions';
 import { Nippo } from '~/domains/Nippo';
-
-const MarkdownEditor = dynamic(() => import('@uiw/react-markdown-editor').then((mod) => mod.default), { ssr: false });
+import { getCurrentDate } from '~/libs/getCurrentDate';
 
 type Props = {
   objectiveId: string;
-  date: string;
   nippo?: Nippo;
+  editable: boolean;
 };
 
-export const NippoEditor: FC<Props> = ({ objectiveId, date, nippo }) => {
+export const NippoEditor: FC<Props> = ({ objectiveId, nippo, editable }) => {
   // NOTE: Loading状態を表示する
   const [isUpdating, setIsUpdating] = useState(false);
 
@@ -38,11 +36,11 @@ export const NippoEditor: FC<Props> = ({ objectiveId, date, nippo }) => {
       if (isUpdating) return;
 
       setIsUpdating(true);
-      await postNippo({ objectiveId, date, body }).finally(() => {
+      await postNippo({ objectiveId, date: nippo?.date || format(getCurrentDate(), 'yyyy-MM-dd'), body }).finally(() => {
         setIsUpdating(false);
       });
     },
-    [date, isUpdating, objectiveId],
+    [isUpdating, nippo?.date, objectiveId],
   );
 
   const extensions = [
@@ -50,11 +48,11 @@ export const NippoEditor: FC<Props> = ({ objectiveId, date, nippo }) => {
     StarterKit.configure({
       bulletList: {
         keepMarks: true,
-        keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
+        keepAttributes: false,
       },
       orderedList: {
         keepMarks: true,
-        keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
+        keepAttributes: false,
       },
     }),
     Placeholder.configure({
@@ -69,20 +67,11 @@ export const NippoEditor: FC<Props> = ({ objectiveId, date, nippo }) => {
     extensions,
     content: nippo?.body,
     autofocus: true,
-    editable: true,
-    injectCSS: false,
+    editable,
     onUpdate: ({ editor }) => {
       handleEditorChange(editor.getHTML());
     },
   });
 
   return <EditorContent editor={editor} />;
-
-  return (
-    <MarkdownEditor
-      height="471px" // NOTE: 21pxはツールバーの高さ
-      value={nippo?.body}
-      onChange={debounce(handleEditorChange, 200)}
-    />
-  );
 };

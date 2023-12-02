@@ -1,12 +1,10 @@
 import { Metadata } from 'next';
-import { NippoPreview } from '~/app/_components/domains/Nippo/NippoPreview/NippoPreview';
 import { getNippoByDate } from '~/app/_actions/nippoActions';
 import { getObjectiveBySlug } from '~/app/_actions/objectiveActions';
 import { URLS } from '~/app/_constants/urls';
 import { generateNippoMetadata } from '~/libs/generateNippoMetadata';
 import { fetchMe } from '~/app/_actions/userActions';
 import { NippoEditor } from '~/app/_components/domains/Nippo/NippoEditor';
-import { Tabs } from '~/app/_components/uiParts/Tabs';
 import { getDateString } from '~/libs/getDateString';
 import { ObjectiveStickyHeader } from '~/app/_components/domains/Objective/ObjectiveStickyHeader';
 
@@ -33,24 +31,7 @@ export default async function Page({ params }: Props) {
         <div className="px-[8px] pt-[16px] pb-[32px] w-[100%]">
           <ObjectiveStickyHeader objective={objective} />
           <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{dateString}</p>
-          {currentUser?._id === objective.createdUserId ? (
-            <Tabs
-              tabItems={[
-                {
-                  title: 'エディター',
-                  key: 'editor',
-                  children: <NippoEditor objectiveId={objective._id} date={params.date} nippo={nippo} />,
-                },
-                {
-                  title: 'プレビュー',
-                  key: 'preview',
-                  children: <NippoPreview body={nippo?.body} date={params.date} />,
-                },
-              ]}
-            />
-          ) : (
-            <NippoPreview body={nippo?.body} date={params.date} />
-          )}
+          <NippoEditor objectiveId={objective._id} nippo={nippo} editable={currentUser?._id === objective.createdUserId} />
         </div>
       </div>
     </div>
