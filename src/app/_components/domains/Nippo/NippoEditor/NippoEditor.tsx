@@ -3,6 +3,7 @@
 import './styles.scss';
 
 import { Color } from '@tiptap/extension-color';
+import { Link } from '@tiptap/extension-link';
 import { useEffect, useState, FC, useCallback } from 'react';
 import { EditorContent, useEditor } from '@tiptap/react';
 import TextStyle from '@tiptap/extension-text-style';
@@ -38,6 +39,7 @@ export const NippoEditor: FC<Props> = ({ objectiveId, nippo }) => {
 
   const extensions = [
     Color.configure({ types: [TextStyle.name, ListItem.name] }),
+    Link.configure(),
     StarterKit.configure({
       bulletList: {
         keepMarks: true,
