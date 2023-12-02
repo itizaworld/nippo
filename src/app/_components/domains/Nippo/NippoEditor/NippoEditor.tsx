@@ -8,8 +8,10 @@ import { useEffect, useCallback, useState, FC } from 'react';
 import { debounce } from 'lodash';
 import { EditorContent, useEditor } from '@tiptap/react';
 import TextStyle from '@tiptap/extension-text-style';
+import Placeholder from '@tiptap/extension-placeholder';
 import StarterKit from '@tiptap/starter-kit';
 import ListItem from '@tiptap/extension-list-item';
+import Heading from '@tiptap/extension-heading';
 import { postNippo } from '~/app/_actions/nippoActions';
 import { Nippo } from '~/domains/Nippo';
 
@@ -55,14 +57,26 @@ export const NippoEditor: FC<Props> = ({ objectiveId, date, nippo }) => {
         keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
       },
     }),
+    Placeholder.configure({
+      placeholder: '振り返りを記入しましょう！',
+    }),
+    Heading.configure({
+      levels: [1, 2, 3, 4, 5],
+    }),
   ];
 
   const editor = useEditor({
     extensions,
     content: nippo?.body,
+    autofocus: true,
+    editable: true,
+    injectCSS: false,
+    onUpdate: ({ editor }) => {
+      handleEditorChange(editor.getHTML());
+    },
   });
 
-  return <EditorContent editor={editor} placeholder="振り返りを記入しましょう！" />;
+  return <EditorContent editor={editor} />;
 
   return (
     <MarkdownEditor
