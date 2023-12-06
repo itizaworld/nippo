@@ -50,7 +50,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
               return (
                 <div key={nippo._id}>
                   <div className="mt-[32px] mb-[8px] flex justify-between">
-                    <Link href={URLS.SLUG_DATE(objective.slug, format(getCurrentDate(), 'yyyy-MM-dd'))} className="cursor-pointer">
+                    <Link href={URLS.SLUG_DATE(objective.slug, nippo.date)} className="cursor-pointer">
                       <p className="text-xl font-bold text-gray-700">{format(new Date(nippo.date), 'yyyy年MM月dd日')}</p>
                     </Link>
                     {objective.createdUserId === currentUser?._id && (
