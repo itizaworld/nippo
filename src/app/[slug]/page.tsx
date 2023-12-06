@@ -31,7 +31,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <div className="px-[8px] pt-[16px] pb-[32px] w-[100%]">
           <ObjectiveStickyHeader objective={objective} />
           <div className="mt-[32px] mb-[8px] flex justify-between">
-            <p className="text-xl font-bold text-gray-700">{format(getCurrentDate(), 'yyyy年MM月dd日')}</p>
+            <Link href={URLS.SLUG_DATE(objective.slug, format(getCurrentDate(), 'yyyy-MM-dd'))} className="cursor-pointer">
+              <p className="text-xl font-bold text-gray-700">{format(getCurrentDate(), 'yyyy年MM月dd日')}</p>
+            </Link>
             {objective.createdUserId === currentUser?._id && (
               <Link href={URLS.SLUG_DATE(objective.slug, format(getCurrentDate(), 'yyyy-MM-dd'))}>
                 <Button className="" size="sm" color="primary" variant="bordered">
@@ -48,7 +50,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
               return (
                 <div key={nippo._id}>
                   <div className="mt-[32px] mb-[8px] flex justify-between">
-                    <p className="text-xl font-bold text-gray-700">{format(new Date(nippo.date), 'yyyy年MM月dd日')}</p>
+                    <Link href={URLS.SLUG_DATE(objective.slug, format(getCurrentDate(), 'yyyy-MM-dd'))} className="cursor-pointer">
+                      <p className="text-xl font-bold text-gray-700">{format(new Date(nippo.date), 'yyyy年MM月dd日')}</p>
+                    </Link>
                     {objective.createdUserId === currentUser?._id && (
                       <Link href={URLS.SLUG_DATE(objective.slug, nippo.date)}>
                         <Button className="" size="sm" color="primary" variant="bordered">
