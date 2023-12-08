@@ -11,26 +11,25 @@ import Placeholder from '@tiptap/extension-placeholder';
 import StarterKit from '@tiptap/starter-kit';
 import ListItem from '@tiptap/extension-list-item';
 import Heading from '@tiptap/extension-heading';
-import { format } from 'date-fns';
 import { postNippo } from '~/app/_actions/nippoActions';
 import { Nippo } from '~/domains/Nippo';
-import { getCurrentDate } from '~/libs/getCurrentDate';
 import { useDebounce } from '~/libs/useDebounce';
 
 type Props = {
   objectiveId: string;
   nippo?: Nippo;
+  date: string;
 };
 
-export const NippoEditor: FC<Props> = ({ objectiveId, nippo }) => {
+export const NippoEditor: FC<Props> = ({ objectiveId, nippo, date }) => {
   const [inputText, setInputText] = useState<string>();
   const debouncedInputText = useDebounce({ value: inputText, delay: 200 });
 
   const handleEditorChange = useCallback(
     async (body: string) => {
-      await postNippo({ objectiveId, date: nippo?.date || format(getCurrentDate(), 'yyyy-MM-dd'), body });
+      await postNippo({ objectiveId, date: nippo?.date || date, body });
     },
-    [nippo?.date, objectiveId],
+    [date, nippo?.date, objectiveId],
   );
 
   useEffect(() => {
