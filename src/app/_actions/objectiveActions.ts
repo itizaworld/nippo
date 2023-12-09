@@ -6,6 +6,7 @@ import { URLS } from '../_constants/urls';
 import { Objective } from '~/domains/Objective';
 import { apiGet, apiPost } from '~/libs/apiClient';
 import { Nippo } from '~/domains/Nippo';
+import { PaginationResult } from '~/domains/PaginationResult';
 
 export const getObjectiveMe = async () => {
   return await apiGet<{ objective: Objective }>(API_OBJECTIVE_ME());
@@ -31,8 +32,16 @@ export const postObjective = async (name: string) => {
   });
 };
 
-export const getObjectiveNippos = async ({ objectiveId, isMyObjective }: { objectiveId: string; isMyObjective: boolean }) => {
-  return await apiGet<{ nippos: Nippo[] }>(API_OBJECTIVE_ID_NIPPO(objectiveId), {
+export const getObjectiveNippos = async ({
+  objectiveId,
+  isMyObjective,
+  page,
+}: {
+  objectiveId: string;
+  isMyObjective: boolean;
+  page: number;
+}) => {
+  return await apiGet<{ result: PaginationResult<Nippo> }>(`${API_OBJECTIVE_ID_NIPPO(objectiveId)}?page=${page}`, {
     // NOTE: 自分自身のデータを取得する場合はキャッシュを無効化する
     cache: isMyObjective ? 'no-store' : undefined,
     next: isMyObjective ? undefined : { revalidate: 60 },
