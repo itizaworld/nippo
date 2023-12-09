@@ -41,7 +41,7 @@ export const getObjectiveNippos = async ({
   isMyObjective: boolean;
   page: number;
 }) => {
-  return await apiGet<{ result: PaginationResult<Nippo> }>(API_OBJECTIVE_ID_NIPPO(objectiveId, page), {
+  return await apiGet<{ result: PaginationResult<Nippo> }>(`${API_OBJECTIVE_ID_NIPPO(objectiveId)}?page=${page}`, {
     // NOTE: 自分自身のデータを取得する場合はキャッシュを無効化する
     cache: isMyObjective ? 'no-store' : undefined,
     next: isMyObjective ? undefined : { revalidate: 60 },
