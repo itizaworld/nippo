@@ -14,7 +14,7 @@ export const NippoBreadcrumbs: FC<Props> = ({ objective, date }) => {
   return (
     <Breadcrumbs size="sm">
       <BreadcrumbItem>
-        <Link href={URLS.SLUG(objective.slug)} className="text-black">
+        <Link size="sm" href={URLS.SLUG(objective.slug)} className="text-black">
           {objective.name}
         </Link>
       </BreadcrumbItem>
