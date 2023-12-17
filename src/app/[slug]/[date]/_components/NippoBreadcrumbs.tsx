@@ -12,7 +12,7 @@ type Props = {
 
 export const NippoBreadcrumbs: FC<Props> = ({ objective, date }) => {
   return (
-    <Breadcrumbs>
+    <Breadcrumbs size="sm">
       <BreadcrumbItem>
         <Link href={URLS.SLUG(objective.slug)} className="text-black">
           {objective.name}
