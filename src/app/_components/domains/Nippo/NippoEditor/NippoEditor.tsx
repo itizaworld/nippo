@@ -27,9 +27,9 @@ export const NippoEditor: FC<Props> = ({ objectiveId, nippo, date }) => {
 
   const handleEditorChange = useCallback(
     async (body: string) => {
-      await postNippo({ objectiveId, date: nippo?.date || date, body });
+      await postNippo({ objectiveId, date, body });
     },
-    [date, nippo?.date, objectiveId],
+    [date, objectiveId],
   );
 
   useEffect(() => {
