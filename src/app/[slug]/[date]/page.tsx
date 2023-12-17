@@ -33,7 +33,7 @@ export default async function Page({ params }: Props) {
           <NippoBreadcrumbs objective={objective} date={dateString} />
           <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{dateString}</p>
           {currentUser?._id === objective.createdUserId ? (
-            <NippoEditor objectiveId={objective._id} nippo={nippo} />
+            <NippoEditor objectiveId={objective._id} nippo={nippo} date={params.date} />
           ) : (
             <NippoPreview nippo={nippo} />
           )}
