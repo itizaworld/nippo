@@ -7,5 +7,6 @@ export const URLS = {
   SLUG_DATE: (slug: string, date: string) => `/${slug}/${date}`,
   TERM: `${frontUrl}/terms`,
   POLICY: `${frontUrl}/policy`,
+  SHARE_NIPPO: (slug: string, date: string) => `${frontUrl}/${slug}/${date}`,
   LOGIN_TO_BACKEND: `${serverUrl}/auth/google`,
 };
