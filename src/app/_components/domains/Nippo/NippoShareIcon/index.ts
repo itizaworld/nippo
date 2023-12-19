@@ -1,0 +1,1 @@
+export { NippoShareIcon } from './NippoShareIcon';
