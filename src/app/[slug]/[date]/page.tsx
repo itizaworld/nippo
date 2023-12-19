@@ -8,6 +8,7 @@ import { fetchMe } from '~/app/_actions/userActions';
 import { NippoEditor } from '~/app/_components/domains/Nippo/NippoEditor';
 import { getDateString } from '~/libs/getDateString';
 import { NippoPreview } from '~/app/_components/domains/Nippo/NippoPreview';
+import { NippoShareIcon } from '~/app/_components/domains/Nippo/NippoShareIcon';
 
 type Props = { params: { slug: string; date: string } };
 
@@ -31,7 +32,10 @@ export default async function Page({ params }: Props) {
       <div className="min-h-[500px] max-w-[1024px] mx-auto flex gap-[16px] md:gap-[48px]">
         <div className="px-[8px] pt-[8px] pb-[32px] w-[100%]">
           <NippoBreadcrumbs objective={objective} date={dateString} />
-          <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{dateString}</p>
+          <div className="mt-[32px] mb-[8px] flex justify-between">
+            <p className="text-xl font-bold text-gray-700">{dateString}</p>
+            {nippo && <NippoShareIcon nippo={nippo} />}
+          </div>
           {currentUser?._id === objective.createdUserId ? (
             <NippoEditor objectiveId={objective._id} nippo={nippo} date={params.date} />
           ) : (
