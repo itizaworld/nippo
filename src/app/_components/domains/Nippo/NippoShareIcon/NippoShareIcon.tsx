@@ -4,14 +4,16 @@ import { Button, Link } from '@nextui-org/react';
 import { format } from 'date-fns';
 
 import { Icon } from '~/app/_components/uiParts/icons';
+import { URLS } from '~/app/_constants/urls';
 import { Nippo } from '~/domains/Nippo';
 
-export const NippoShareIcon = ({ nippo }: { nippo: Nippo }) => {
+export const NippoShareIcon = ({ slug, nippo }: { slug: string; nippo: Nippo }) => {
   return (
     <Link
-      href={`https://twitter.com/intent/tweet?text=${format(new Date(nippo.date), 'yyyy年MM月dd日')}の日報&hashtags=みんなの日報&url=${
-        window.location.href
-      }`}
+      href={`https://twitter.com/intent/tweet?text=${format(
+        new Date(nippo.date),
+        'yyyy年MM月dd日',
+      )}の日報&hashtags=みんなの日報&url=${URLS.SHARE_NIPPO(slug, nippo.date)}`}
       target="_blank"
       rel="noopener noreferrer"
     >

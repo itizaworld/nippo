@@ -34,7 +34,7 @@ export default async function Page({ params }: Props) {
           <NippoBreadcrumbs objective={objective} date={dateString} />
           <div className="mt-[32px] mb-[8px] flex justify-between">
             <p className="text-xl font-bold text-gray-700">{dateString}</p>
-            {nippo && <NippoShareIcon nippo={nippo} />}
+            {nippo && <NippoShareIcon slug={objective.slug} nippo={nippo} />}
           </div>
           {currentUser?._id === objective.createdUserId ? (
             <NippoEditor objectiveId={objective._id} nippo={nippo} date={params.date} />
