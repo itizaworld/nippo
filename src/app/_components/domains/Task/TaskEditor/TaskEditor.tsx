@@ -1,17 +1,12 @@
 'use client';
 
-import { FC, useCallback } from 'react';
+import { FC } from 'react';
 import { Editor } from '~/app/_components/uiParts/Editor';
-import { Task } from '~/domains/Task';
 
 type Props = {
-  task?: Task;
+  onChangeText: (body: string) => Promise<void>;
 };
 
-export const TaskEditor: FC<Props> = ({ task }) => {
-  const handleEditorChange = useCallback(async (body: string) => {
-    console.log(body);
-  }, []);
-
-  return <Editor body={task?.body} onChange={handleEditorChange} placeholder="タスクの内容を記入しましょう" />;
+export const TaskEditor: FC<Props> = ({ onChangeText }) => {
+  return <Editor onChange={onChangeText} placeholder="タスクの内容を記入しましょう" />;
 };

@@ -3,7 +3,7 @@
 import { FC, useCallback } from 'react';
 import { postNippo } from '~/app/_actions/nippoActions';
 import { Nippo } from '~/domains/Nippo';
-import { Editor } from '~/app/_components/uiParts/Editor';
+import { DebounceEditor } from '~/app/_components/uiParts/Editor/DebounceEditor';
 
 type Props = {
   objectiveId: string;
@@ -19,5 +19,5 @@ export const NippoEditor: FC<Props> = ({ objectiveId, nippo, date }) => {
     [date, objectiveId],
   );
 
-  return <Editor body={nippo?.body} onChange={handleEditorChange} placeholder="振り返りを記入しましょう！" />;
+  return <DebounceEditor body={nippo?.body} onChange={handleEditorChange} placeholder="振り返りを記入しましょう！" />;
 };

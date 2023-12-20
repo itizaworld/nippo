@@ -5,7 +5,11 @@ import { FC } from 'react';
 import { CreateModal } from '../CreateTaskModal';
 import { Icon } from '~/app/_components/uiParts/icons';
 
-export const TaskList: FC = () => {
+type Props = {
+  objectiveId: string;
+};
+
+export const TaskList: FC<Props> = ({ objectiveId }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
@@ -17,7 +21,7 @@ export const TaskList: FC = () => {
       <Button className="mt-[8px]" size="sm" color="primary" variant="light" startContent={<Icon icon="PLUS" />} onClick={() => onOpen()}>
         タスクの追加
       </Button>
-      <CreateModal isOpen={isOpen} onOpenChange={onOpenChange} />
+      <CreateModal isOpen={isOpen} onOpenChange={onOpenChange} objectiveId={objectiveId} />
     </div>
   );
 };

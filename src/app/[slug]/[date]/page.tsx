@@ -47,7 +47,7 @@ export default async function Page({ params }: Props) {
               )}
             </div>
             <div className="w-[100%] md:w-[200px]">
-              <TaskList />
+              <TaskList objectiveId={objective._id} />
             </div>
           </div>
         </div>
