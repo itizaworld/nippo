@@ -38,7 +38,7 @@ export default async function Page({ params }: Props) {
             {nippo && <NippoShareIcon slug={objective.slug} nippo={nippo} />}
           </div>
           <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{dateString}</p>
-          <div className="flex gap-[16px]">
+          <div className="flex gap-[16px] md:flex-row flex-col">
             <div className="flex-1">
               {currentUser?._id === objective.createdUserId ? (
                 <NippoEditor objectiveId={objective._id} nippo={nippo} date={params.date} />
@@ -46,7 +46,7 @@ export default async function Page({ params }: Props) {
                 <NippoPreview nippo={nippo} />
               )}
             </div>
-            <div className="w-[200px]">
+            <div className="w-[100%] md:w-[200px]">
               <TaskList />
             </div>
           </div>
