@@ -33,20 +33,19 @@ export default async function Page({ params }: Props) {
       <div className="min-h-[500px] max-w-[1024px] mx-auto flex gap-[16px] md:gap-[48px]">
         <div className="px-[8px] pt-[8px] pb-[32px] w-[100%]">
           <NippoBreadcrumbs objective={objective} date={dateString} />
-          <div className="mt-[32px] mb-[8px] flex justify-between">
-            <p className="text-xl font-bold text-gray-700">{dateString}</p>
-            {nippo && <NippoShareIcon slug={objective.slug} nippo={nippo} />}
-          </div>
-          <p className="mt-[32px] text-xl font-bold mb-[8px] text-gray-700">{dateString}</p>
-          <div className="flex gap-[16px] md:flex-row flex-col">
+          <div className="flex gap-[16px] md:flex-row flex-col mt-[32px]">
             <div className="flex-1">
+              <div className="mb-[8px] flex justify-between">
+                <p className="text-xl font-bold text-gray-700">{dateString}</p>
+                {nippo && <NippoShareIcon slug={objective.slug} nippo={nippo} />}
+              </div>
               {currentUser?._id === objective.createdUserId ? (
                 <NippoEditor objectiveId={objective._id} nippo={nippo} date={params.date} />
               ) : (
                 <NippoPreview nippo={nippo} />
               )}
             </div>
-            <div className="w-[100%] md:w-[200px]">
+            <div className="md:mt-[40px] w-[100%] md:w-[200px]">
               <TaskList objectiveId={objective._id} />
             </div>
           </div>
