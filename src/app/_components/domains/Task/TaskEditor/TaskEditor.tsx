@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { Editor } from '~/app/_components/uiParts/Editor';
 
 type Props = {
-  onChangeText: (body: string) => Promise<void>;
+  onChangeText: (body: string) => void;
 };
 
 export const TaskEditor: FC<Props> = ({ onChangeText }) => {

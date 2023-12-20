@@ -20,14 +20,12 @@ interface IFormInput {
 export const CreateModal: FC<Props> = ({ isOpen, onOpenChange, objectiveId }) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const { control, formState, getValues, handleSubmit, reset } = useForm<IFormInput>({
+  const { control, formState, handleSubmit, reset } = useForm<IFormInput>({
     defaultValues: {
       title: '',
       body: '',
     },
   });
-
-  console.log(getValues().body);
 
   const handleOpenChange = useCallback(() => {
     reset();
@@ -76,7 +74,7 @@ export const CreateModal: FC<Props> = ({ isOpen, onOpenChange, objectiveId }) =>
             name="body"
             control={control}
             rules={{ required: true, minLength: 1 }}
-            render={({ field }) => <TaskEditor onChangeText={async (body) => field.onChange(body)} />}
+            render={({ field }) => <TaskEditor onChangeText={(body) => field.onChange(body)} />}
           />
         </ModalBody>
         <ModalFooter>
