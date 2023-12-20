@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { NippoBreadcrumbs } from './_components/NippoBreadcrumbs';
 import { getNippoByDate } from '~/app/_actions/nippoActions';
-import { getObjectiveBySlug } from '~/app/_actions/objectiveActions';
+import { getObjectiveBySlug, getObjectiveTasks } from '~/app/_actions/objectiveActions';
 import { URLS } from '~/app/_constants/urls';
 import { generateNippoMetadata } from '~/libs/generateNippoMetadata';
 import { fetchMe } from '~/app/_actions/userActions';
@@ -26,6 +26,9 @@ export default async function Page({ params }: Props) {
     getNippoByDate(params.slug, params.date),
     fetchMe(),
   ]);
+  const { result: tasksPagination } = await getObjectiveTasks({ objectiveId: objective._id, page: 1 });
+  console.log(tasksPagination);
+
   const dateString = getDateString(params.date);
 
   return (
@@ -46,7 +49,7 @@ export default async function Page({ params }: Props) {
               )}
             </div>
             <div className="md:mt-[40px] w-[100%] md:w-[200px]">
-              <TaskList objectiveId={objective._id} />
+              <TaskList objectiveId={objective._id} tasks={tasksPagination.docs} />
             </div>
           </div>
         </div>
