@@ -27,8 +27,6 @@ export default async function Page({ params }: Props) {
     fetchMe(),
   ]);
   const { result: tasksPagination } = await getObjectiveTasks({ objectiveId: objective._id, page: 1 });
-  console.log(tasksPagination);
-
   const dateString = getDateString(params.date);
 
   return (
@@ -48,9 +46,12 @@ export default async function Page({ params }: Props) {
                 <NippoPreview nippo={nippo} />
               )}
             </div>
-            <div className="md:mt-[40px] w-[100%] md:w-[200px]">
-              <TaskList objectiveId={objective._id} tasks={tasksPagination.docs} />
-            </div>
+            {/* TODO:一旦非表示 */}
+            {false && (
+              <div className="md:mt-[40px] w-[100%] md:w-[200px]">
+                <TaskList objectiveId={objective._id} tasks={tasksPagination.docs} />
+              </div>
+            )}
           </div>
         </div>
       </div>
